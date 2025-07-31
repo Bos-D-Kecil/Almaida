@@ -7,11 +7,17 @@ const messageDiv = document.getElementById("message");
 
 function init() {
   scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x87ceeb); // Biru langit
+
   camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
   camera.position.z = 5;
 
-  renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gameCanvas") });
+  renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gameCanvas"), antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(0, 1, 1).normalize();
+  scene.add(light);
 
   spawnEnemy();
   animate();
@@ -26,12 +32,13 @@ function init() {
 
 function spawnEnemy() {
   const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-  const material = new THREE.MeshBasicMaterial({ color: 0xff66cc });
+  const material = new THREE.MeshStandardMaterial({ color: 0xff66cc });
   const enemy = new THREE.Mesh(geometry, material);
 
   enemy.position.x = (Math.random() - 0.5) * 6;
   enemy.position.y = (Math.random() - 0.5) * 4;
   enemy.position.z = -10;
+
   enemies.push(enemy);
   scene.add(enemy);
 }
