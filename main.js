@@ -1,69 +1,44 @@
-let scene, camera, renderer;
-let enemies = [];
-let score = 0;
-let maxScore = 10;
-const scoreDiv = document.getElementById("score");
-const messageDiv = document.getElementById("message");
-
-function init() {
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x87ceeb); // Biru langit
-
-  camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.z = 5;
-
-  renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gameCanvas"), antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-
-  const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(0, 1, 1).normalize();
-  scene.add(light);
-
-  spawnEnemy();
-  animate();
-
-  document.body.addEventListener("click", shoot);
-  window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-}
-
-function spawnEnemy() {
-  const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-  const material = new THREE.MeshStandardMaterial({ color: 0xff66cc });
-  const enemy = new THREE.Mesh(geometry, material);
-
-  enemy.position.x = (Math.random() - 0.5) * 6;
-  enemy.position.y = (Math.random() - 0.5) * 4;
-  enemy.position.z = -10;
-
-  enemies.push(enemy);
-  scene.add(enemy);
-}
-
-function shoot() {
-  const raycaster = new THREE.Raycaster();
-  raycaster.setFromCamera(new THREE.Vector2(0, 0), camera);
-  const intersects = raycaster.intersectObjects(enemies);
-  if (intersects.length > 0) {
-    const hit = intersects[0].object;
-    scene.remove(hit);
-    enemies = enemies.filter(e => e !== hit);
-    score++;
-    scoreDiv.textContent = `Score: ${score}`;
-    if (score >= maxScore) {
-      messageDiv.classList.remove("hidden");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Almaida Game</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: sans-serif;
+      color: white;
     }
-    spawnEnemy();
-  }
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-  enemies.forEach(enemy => enemy.position.z += 0.05);
-  renderer.render(scene, camera);
-}
-
-init();
+    #score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 8px;
+    }
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="score">Score: 0</div>
+  <div id="message" class="hidden">Selamat, kamu sudah menang! 🧙‍♀️</div>
+  <canvas id="gameCanvas"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
