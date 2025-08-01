@@ -40,13 +40,13 @@ const romanticMessages = [
     "Aduh! Sakit tapi kok cinta ya?",
     "Kamu emang jago nembak hatiku!",
     "Tembakan itu sekuat cintaku padamu.",
-    "Kena! Sama kayak hatiku yang kena panah asmara kamu.",
+    "ih bau memek.",
     "Meski kena tembak, aku akan tetap ngejar kamu!",
-    "Cinta kamu tak terelakkan!",
-    "Setiap tembakan adalah detak jantungku untukmu.",
+    "jangan lupa pap kalo keluar",
+    "anjaayyy bukan pacarr ternyata.",
     "Hatiku sudah kamu taklukkan.",
-    "Target utama saya adalah kebahagiaan kamu!",
-    "Kamu adalah satu-satunya 'penyerang' yang kuinginkan."
+    "kamu yakin gak kangen aku?",
+    "makasih ya sayangg lopyuuu"
 ];
 let messageBox = document.getElementById('message-box');
 let currentMessageIndex = 0; // Untuk pesan berurutan
