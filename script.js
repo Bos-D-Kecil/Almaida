@@ -38,10 +38,10 @@ function drawEnemy() {
 // --- Pesan-pesan Romantis ---
 const romanticMessages = [
     "Aduh! Sakit tapi kok cinta ya?",
-    "Kamu emang jago nembak hatiku!",
+    "ALMA A nya Alapyuuuu M nya Muachhhhhhh",
     "Tembakan itu sekuat cintaku padamu.",
     "ih bau memek.",
-    "Meski kena tembak, aku akan tetap ngejar kamu!",
+    "diemm ngentot jangan di pencet mulu dah",
     "jangan lupa pap kalo keluar",
     "anjaayyy bukan pacarr ternyata.",
     "Hatiku sudah kamu taklukkan.",
