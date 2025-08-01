@@ -56,7 +56,7 @@ function showMessage(message) {
     messageBox.style.opacity = 1;
     setTimeout(() => {
         messageBox.style.opacity = 0;
-    }, 7000); // Pesan akan hilang setelah 7 detik
+    }, 10000); // Pesan akan hilang setelah 10 detik
 }
 
 // --- Logika Game ---
